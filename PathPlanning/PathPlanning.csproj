@@ -60,10 +60,4 @@
     </EmbeddedResource>
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="Resources\exit.JPG">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>
