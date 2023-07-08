@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            btnExit = new Button();
             btnStopAttack = new Button();
             btnStartAttack = new Button();
             tboxNumberOfSoldiers = new TextBox();
@@ -75,25 +74,16 @@
             panelTargetSoldiersEye = new Panel();
             btnSaveScenario = new Button();
             btnOpenScenario = new Button();
+            btnExit = new Button();
             panelGodView.SuspendLayout();
             panelSoldiersEye.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)soldierEyePictureBox).BeginInit();
             SuspendLayout();
             // 
-            // btnExit
-            // 
-            btnExit.BackColor = Color.Transparent;
-            btnExit.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            btnExit.Image = PathPlanning.Properties.Resources.exit;
-            btnExit.Location = new Point(1040, 0);
-            btnExit.Name = "btnExit";
-            btnExit.Size = new Size(40, 40);
-            btnExit.TabIndex = 2;
-            btnExit.UseVisualStyleBackColor = false;
-            btnExit.Click += btnExit_Click;
-            // 
             // btnStopAttack
             // 
+            btnStopAttack.Cursor = Cursors.Hand;
+            btnStopAttack.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btnStopAttack.Location = new Point(813, 626);
             btnStopAttack.Name = "btnStopAttack";
             btnStopAttack.Size = new Size(80, 23);
@@ -104,6 +94,8 @@
             // 
             // btnStartAttack
             // 
+            btnStartAttack.Cursor = Cursors.Hand;
+            btnStartAttack.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btnStartAttack.Location = new Point(899, 626);
             btnStartAttack.Name = "btnStartAttack";
             btnStartAttack.Size = new Size(82, 23);
@@ -122,6 +114,8 @@
             // 
             // btnSetUnits
             // 
+            btnSetUnits.Cursor = Cursors.Hand;
+            btnSetUnits.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btnSetUnits.Location = new Point(987, 626);
             btnSetUnits.Name = "btnSetUnits";
             btnSetUnits.Size = new Size(70, 23);
@@ -133,7 +127,7 @@
             // mainTimer
             // 
             mainTimer.Interval = 150;
-            mainTimer.Tick += mainTimer_Tick_1;
+            mainTimer.Tick += Timer_Tick;
             // 
             // panelTarget
             // 
@@ -465,7 +459,8 @@
             // 
             // btnSaveScenario
             // 
-            btnSaveScenario.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            btnSaveScenario.Cursor = Cursors.Hand;
+            btnSaveScenario.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btnSaveScenario.Location = new Point(813, 656);
             btnSaveScenario.Name = "btnSaveScenario";
             btnSaveScenario.Size = new Size(170, 23);
@@ -476,14 +471,34 @@
             // 
             // btnOpenScenario
             // 
-            btnOpenScenario.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            btnOpenScenario.BackColor = Color.Transparent;
+            btnOpenScenario.Cursor = Cursors.Hand;
+            btnOpenScenario.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btnOpenScenario.Location = new Point(813, 684);
             btnOpenScenario.Name = "btnOpenScenario";
             btnOpenScenario.Size = new Size(170, 23);
             btnOpenScenario.TabIndex = 51;
             btnOpenScenario.Text = "Open Scenario";
-            btnOpenScenario.UseVisualStyleBackColor = true;
+            btnOpenScenario.UseVisualStyleBackColor = false;
             btnOpenScenario.Click += btnOpenScenario_Click;
+            // 
+            // btnExit
+            // 
+            btnExit.Cursor = Cursors.Hand;
+            btnExit.FlatAppearance.BorderColor = Color.IndianRed;
+            btnExit.FlatAppearance.BorderSize = 0;
+            btnExit.FlatAppearance.MouseDownBackColor = Color.IndianRed;
+            btnExit.FlatAppearance.MouseOverBackColor = Color.IndianRed;
+            btnExit.FlatStyle = FlatStyle.Flat;
+            btnExit.Image = PathPlanning.Properties.Resources.logout;
+            btnExit.Location = new Point(1040, 0);
+            btnExit.Name = "btnExit";
+            btnExit.Size = new Size(40, 40);
+            btnExit.TabIndex = 52;
+            btnExit.UseVisualStyleBackColor = true;
+            btnExit.Click += btnExit_Click;
+            btnExit.MouseEnter += btnExit_MouseEnter;
+            btnExit.MouseLeave += btnExit_MouseLeave;
             // 
             // MainForm
             // 
@@ -491,6 +506,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.IndianRed;
             ClientSize = new Size(1080, 710);
+            Controls.Add(btnExit);
             Controls.Add(btnOpenScenario);
             Controls.Add(btnSaveScenario);
             Controls.Add(panelSoldiersEye);
@@ -517,7 +533,6 @@
             Controls.Add(tboxSightOfSoldier);
             Controls.Add(lblPanelSize);
             Controls.Add(tboxPanelSize);
-            Controls.Add(btnExit);
             Controls.Add(lblSightRangeOfTowers);
             Controls.Add(btnSetUnits);
             Controls.Add(btnStopAttack);
@@ -545,52 +560,52 @@
         }
 
         #endregion
-        private Button btnExit;
-        private System.Windows.Forms.Timer mainTimer;
-        private Button btnStartAttack;
-        private Button btnStopAttack;
-        private Button btnSetUnits;
-        private Panel panelTarget;
-        private TextBox tboxNumberOfSoldiers;
-        private ToolTip toolTip1;
-        private Label lblNumberOfSoldiers;
-        private TextBox tboxSoldierMaxMovement;
-        private Label lblMaxMovementOfSoldier;
-        private Label lblSoldierControl;
-        private Label lblTowerControl;
-        private Label lblNumberOfTowers;
-        private TextBox tboxNumberOfTowers;
-        private Label lblSightRangeOfTowers;
-        private TextBox tboxSightRangeOfTowers;
-        private Panel panelGodView;
-        private TextBox tboxPanelSize;
-        private Label lblPanelSize;
+        public System.Windows.Forms.Timer mainTimer;
+        public Button btnStartAttack;
+        public Button btnStopAttack;
+        public Button btnSetUnits;
+        public Panel panelTarget;
+        public TextBox tboxNumberOfSoldiers;
+        public ToolTip toolTip1;
+        public Label lblNumberOfSoldiers;
+        public TextBox tboxSoldierMaxMovement;
+        public Label lblMaxMovementOfSoldier;
+        public Label lblSoldierControl;
+        public Label lblTowerControl;
+        public Label lblNumberOfTowers;
+        public TextBox tboxNumberOfTowers;
+        public Label lblSightRangeOfTowers;
+        public TextBox tboxSightRangeOfTowers;
+        public Panel panelGodView;
+        public TextBox tboxPanelSize;
+        public Label lblPanelSize;
 
-        private TextBox tboxSightOfSoldier;
-        private Label lblSightOfSoldier;
-        private Label lblHealthOfSoldier;
-        private Label lblHitPowerOfTower;
-        private Label lblMaxMovement;
-        private Label lblSightOfArches;
-        private Label label7;
-        private Label lblMaxMovementOfArchers;
-        private Label lblNumberOfArchers;
-        private Label label6;
-        private Label lblMinDistanceFromTarget;
-        private TextBox tboxHealthOfSoldier;
-        private TextBox tboxHitPowerOfTower;
-        private Label label9;
-        private Label lblCurrentHealth;
-        private TextBox tboxMinDistanceFromTarget;
-        private TextBox tboxNumberOfArchers;
-        private TextBox tboxArcherSight;
-        private TextBox tboxHitRangeOfArcher;
-        private TextBox tboxHitPowerOfArcher;
-        private TextBox tboxMaxMovementOfArcher;
-        private Panel panelSoldiersEye;
-        private Panel panelTargetSoldiersEye;
-        private PictureBox soldierEyePictureBox;
-        private Button btnSaveScenario;
-        private Button btnOpenScenario;
+        public TextBox tboxSightOfSoldier;
+        public Label lblSightOfSoldier;
+        public Label lblHealthOfSoldier;
+        public Label lblHitPowerOfTower;
+        public Label lblMaxMovement;
+        public Label lblSightOfArches;
+        public Label label7;
+        public Label lblMaxMovementOfArchers;
+        public Label lblNumberOfArchers;
+        public Label label6;
+        public Label lblMinDistanceFromTarget;
+        public TextBox tboxHealthOfSoldier;
+        public TextBox tboxHitPowerOfTower;
+        public Label label9;
+        public Label lblCurrentHealth;
+        public TextBox tboxMinDistanceFromTarget;
+        public TextBox tboxNumberOfArchers;
+        public TextBox tboxHitRangeOfArcher;
+        public TextBox tboxHitPowerOfArcher;
+        public TextBox tboxMaxMovementOfArcher;
+        public Panel panelSoldiersEye;
+        public Panel panelTargetSoldiersEye;
+        public Button btnSaveScenario;
+        public Button btnOpenScenario;
+        public TextBox tboxArcherSight;
+        public PictureBox soldierEyePictureBox;
+        private Button btnExit;
     }
 }
